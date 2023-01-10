@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserFormState } from "../../interface/interface";
 import Input from "../input/input";
 
 function SignUp() {
+  const navigate = useNavigate();
   const [formDetails, setFormDetails] = useState<UserFormState>({
     username: "",
     email: "",
@@ -101,7 +103,12 @@ function SignUp() {
             </button>
             <p className='text-[#BABABA] text-[13px] font-normal mt-12 text-center'>
               Already have an account ?{" "}
-              <button className='text-[#FEFEFE] font-medium'> Log in</button>
+              <button
+                className='text-[#FEFEFE] font-medium'
+                onClick={() => navigate("/login")}
+              >
+                Log in
+              </button>
             </p>
           </div>
         </div>

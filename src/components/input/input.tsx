@@ -1,9 +1,13 @@
 import React from "react";
 import { InputProps } from "../../interface/interface";
 
-export default function Input(props: InputProps) {
-  const { name, type, placeholder, value, handleChange } = props;
-
+export default function Input({
+  name,
+  type,
+  placeholder,
+  value,
+  handleChange,
+}: InputProps) {
   return (
     <input
       type={type}

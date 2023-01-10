@@ -11,3 +11,7 @@ export interface InputProps {
   value: string;
   handleChange: any;
 }
+
+export interface AuthProps {
+  children: any;
+}
