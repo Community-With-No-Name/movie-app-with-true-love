@@ -5,12 +5,11 @@ import {
   Outlet,
 } from "react-router-dom";
 import "./App.css";
-import React, { lazy, Suspense, useEffect } from "react";
-import SignupPg from "./pages/signup";
+import React, { lazy, Suspense } from "react";
 import Fallback from "./components/fallback/fallback";
 import AuthRoutes from "./components/authRoutes/authRoutes";
-const SignUpPage = lazy(() => import("./components/signup/signup"));
-const LoginPage = lazy(() => import("./components/login/login"));
+const SignUpPage = lazy(() => import("./pages/signup"));
+const LoginPage = lazy(() => import("./pages/login"));
 
 function App() {
   const SignUp = () => {
