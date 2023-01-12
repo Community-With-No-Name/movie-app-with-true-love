@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
-import { AuthProps } from "../../interface/interface";
+import { ChildrenParm } from "../../interface/interface";
 
-export default function AuthRoutes({ children }: AuthProps) {
+export default function AuthRoutes({ children }: ChildrenParm) {
   const user = localStorage.getItem("isUserDetails");
 
   if (user) {

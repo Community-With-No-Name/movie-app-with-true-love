@@ -5,11 +5,13 @@ import {
   Outlet,
 } from "react-router-dom";
 import "./App.css";
-import React, { lazy, Suspense } from "react";
+import { lazy, Suspense } from "react";
 import Fallback from "./components/fallback/fallback";
 import AuthRoutes from "./components/authRoutes/authRoutes";
 const SignUpPage = lazy(() => import("./pages/signup"));
 const LoginPage = lazy(() => import("./pages/login"));
+const ForgotPasswordPg = lazy(() => import("./pages/forgotPassword"));
+const ResetPasswordPg = lazy(() => import("./pages/resetPassword"));
 
 function App() {
   const SignUp = () => {
@@ -23,6 +25,20 @@ function App() {
     return (
       <Suspense fallback={<Fallback />}>
         <LoginPage />
+      </Suspense>
+    );
+  };
+  const ForgotPassword = () => {
+    return (
+      <Suspense fallback={<Fallback />}>
+        <ForgotPasswordPg />
+      </Suspense>
+    );
+  };
+  const ResetPassword = () => {
+    return (
+      <Suspense fallback={<Fallback />}>
+        <ResetPasswordPg />
       </Suspense>
     );
   };
@@ -54,6 +70,8 @@ function App() {
                 </AuthRoutes>
               }
             />
+            <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/reset-password' element={<ResetPassword />} />
           </Route>
         </Routes>
       </Router>

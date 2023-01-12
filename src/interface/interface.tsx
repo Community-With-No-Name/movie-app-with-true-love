@@ -1,7 +1,16 @@
-export interface UserFormState {
+export interface UserSignUp {
   username: string;
   email: string;
   password: string;
+}
+export interface UserLogin {
+  email: string;
+  password: string;
+}
+
+export interface ResetPassword {
+  newPassword: string;
+  confirmPassword: string;
 }
 
 export interface InputProps {
@@ -12,6 +21,11 @@ export interface InputProps {
   handleChange: any;
 }
 
-export interface AuthProps {
+export interface ModalProps {
+  open: boolean;
+  onClose: any;
+}
+
+export interface ChildrenParm {
   children: any;
 }

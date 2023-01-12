@@ -1,16 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserFormState } from "../../interface/interface";
+import { UserLogin } from "../../interface/interface";
 import Input from "../input/input";
 export default function Login() {
-  const [formDetails, setFormDetails] = useState<UserFormState>({
-    username: "",
+  const [loginDetails, setLoginDetails] = useState<UserLogin>({
     email: "",
     password: "",
   });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormDetails({ ...formDetails, [name]: value });
+    setLoginDetails({ ...loginDetails, [name]: value });
   };
   const navigate = useNavigate();
   return (
@@ -42,14 +41,14 @@ export default function Login() {
               <Input
                 type='email'
                 placeholder='Email'
-                value={formDetails.email}
+                value={loginDetails.email}
                 name='email'
                 handleChange={handleChange}
               />
               <Input
                 type='password'
                 placeholder='Password'
-                value={formDetails.password}
+                value={loginDetails.password}
                 name='password'
                 handleChange={handleChange}
               />
@@ -62,7 +61,10 @@ export default function Login() {
                 <input type='checkbox' name='reminder' id='' /> Remember me for
                 30 days
               </span>
-              <button className='text-[#FEFEFE]  text-sm border-b-[1px] font-normal'>
+              <button
+                className='text-[#FEFEFE]  text-sm border-b-[1px] font-normal'
+                onClick={() => navigate("/forgot-password")}
+              >
                 Forgot password
               </button>
             </div>

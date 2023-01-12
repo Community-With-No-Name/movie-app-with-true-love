@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserFormState } from "../../interface/interface";
+import { UserSignUp } from "../../interface/interface";
 import Input from "../input/input";
 
 function SignUp() {
   const navigate = useNavigate();
-  const [formDetails, setFormDetails] = useState<UserFormState>({
+  const [formDetails, setFormDetails] = useState<UserSignUp>({
     username: "",
     email: "",
     password: "",
