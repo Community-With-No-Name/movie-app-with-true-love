@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Input from "../input/input";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState<string>("");

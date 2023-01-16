@@ -29,3 +29,8 @@ export interface ModalProps {
 export interface ChildrenParm {
   children: any;
 }
+export interface SideBarProps {
+  to: string;
+  children: any;
+  Icon: any;
+}

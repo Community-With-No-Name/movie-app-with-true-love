@@ -8,12 +8,22 @@ import "./App.css";
 import { lazy, Suspense } from "react";
 import Fallback from "./components/fallback/fallback";
 import AuthRoutes from "./components/authRoutes/authRoutes";
+import DashboardLayout from "./components/dashboard/dashboard";
 const SignUpPage = lazy(() => import("./pages/signup"));
 const LoginPage = lazy(() => import("./pages/login"));
 const ForgotPasswordPg = lazy(() => import("./pages/forgotPassword"));
 const ResetPasswordPg = lazy(() => import("./pages/resetPassword"));
+const HomePg = lazy(() => import("./pages/homepage"));
 
 function App() {
+  const HomePage = () => {
+    return (
+      <Suspense fallback={<Fallback />}>
+        <HomePg />
+      </Suspense>
+    );
+  };
+
   const SignUp = () => {
     return (
       <Suspense fallback={<Fallback />}>
@@ -47,6 +57,10 @@ function App() {
     <div className='app'>
       <Router>
         <Routes>
+          <Route path='/me' element={<DashboardLayout />}>
+            <Route path='home' element={<HomePage />} />
+          </Route>
+
           <Route
             element={
               <div>
