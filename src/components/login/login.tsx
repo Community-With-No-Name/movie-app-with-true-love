@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserLogin } from "../../interface/interface";
+import { LoginUrl } from "../../libs/endpoints";
+import axios from "axios";
+import { useToasts } from "react-toast-notifications";
 import Input from "../input/input";
 export default function Login() {
+  const { addToast } = useToasts();
   const [loginDetails, setLoginDetails] = useState<UserLogin>({
     email: "",
     password: "",
@@ -10,6 +14,27 @@ export default function Login() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLoginDetails({ ...loginDetails, [name]: value });
+  };
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    axios
+      .post(LoginUrl, {
+        email: loginDetails.email,
+        password: loginDetails.password,
+      })
+      .then((res) => {
+        localStorage.setItem("userToken", res.data.token);
+        addToast(res.data.message, {
+          appearance: "success",
+          autoDismiss: true,
+        });
+      })
+      .catch((error) => {
+        addToast(error.response.data.message, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      });
   };
   const navigate = useNavigate();
   return (
@@ -37,7 +62,7 @@ export default function Login() {
                 Or
               </legend>
             </fieldset>
-            <form action='' className='w-full sm:mt-10'>
+            <form className='w-full sm:mt-10' onSubmit={handleSubmit}>
               <Input
                 type='email'
                 placeholder='Email'

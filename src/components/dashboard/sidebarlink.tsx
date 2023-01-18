@@ -6,14 +6,14 @@ export default function SidebarLink({ to, children, Icon }: SideBarProps) {
     <NavLink
       to={to}
       className={({ isActive }) =>
-        `min-w-full flex sm:block text-left text-[#666666] text-base font-semibold border-r-4 py-5 hover:border-[#3DD2CC75] ${
+        `min-w-full flex  text-[#666666]  items-center gap-6 m-auto text-base font-semibold border-r-4 py-4 hover:border-[#3DD2CC75] ${
           isActive
-            ? "bg-[#3DD2CC40] border-[#3DD2CC75] text-[#3DD2CC75] hover:border-[#3DD2CC75]"
-            : "text-slate-700 border-[#5D387F00]"
+            ? "bg-[#3DD2CC40] border-[#3DD2CC75]  text-[#3DD2CC75] hover:border-[#3DD2CC75]"
+            : "text-[#666666] border-[#5D387F00]"
         } transition ease-in `
       }
     >
-      <div className='max-w-10 pr-10 pl-8 sm:pl-16 space-y-4 flex items-center space-x-6'>
+      <div className='max-w-10 pr-10 pl-8 sm:pl-8 py-4  flex justify-center items-center space-x-6'>
         <Icon size={20} />
         <span className='sm:hidden md:block'>{children}</span>
       </div>

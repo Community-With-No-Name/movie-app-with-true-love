@@ -5,8 +5,10 @@ import {
   Outlet,
 } from "react-router-dom";
 import "./App.css";
+import { ToastProvider } from "react-toast-notifications";
 import { lazy, Suspense } from "react";
 import Fallback from "./components/fallback/fallback";
+import Search from "./components/search/search";
 import AuthRoutes from "./components/authRoutes/authRoutes";
 import DashboardLayout from "./components/dashboard/dashboard";
 const SignUpPage = lazy(() => import("./pages/signup"));
@@ -54,42 +56,58 @@ function App() {
   };
 
   return (
-    <div className='app'>
-      <Router>
-        <Routes>
-          <Route path='/me' element={<DashboardLayout />}>
-            <Route path='home' element={<HomePage />} />
-          </Route>
+    <ToastProvider>
+      <div className='app'>
+        <Router>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <div>
+                  <DashboardLayout />
+                </div>
+              }
+            >
+              <Route
+                path='/'
+                element={
+                  <div className='w-full'>
+                    <HomePage />
+                  </div>
+                }
+              />
+            </Route>
 
-          <Route
-            element={
-              <div>
-                <Outlet />
-              </div>
-            }
-          >
             <Route
-              path='/signup'
               element={
-                <AuthRoutes>
-                  <SignUp />
-                </AuthRoutes>
+                <div>
+                  <Outlet />
+                </div>
               }
-            />
-            <Route
-              path='/login'
-              element={
-                <AuthRoutes>
-                  <Login />
-                </AuthRoutes>
-              }
-            />
-            <Route path='/forgot-password' element={<ForgotPassword />} />
-            <Route path='/reset-password' element={<ResetPassword />} />
-          </Route>
-        </Routes>
-      </Router>
-    </div>
+            >
+              <Route
+                path='/signup'
+                element={
+                  <AuthRoutes>
+                    <SignUp />
+                  </AuthRoutes>
+                }
+              />
+              <Route
+                path='/login'
+                element={
+                  <AuthRoutes>
+                    <Login />
+                  </AuthRoutes>
+                }
+              />
+              <Route path='/forgot-password' element={<ForgotPassword />} />
+              <Route path='/reset-password' element={<ResetPassword />} />
+            </Route>
+          </Routes>
+        </Router>
+      </div>
+    </ToastProvider>
   );
 }
 

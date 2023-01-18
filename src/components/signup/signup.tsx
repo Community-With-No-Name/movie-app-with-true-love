@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useToasts } from "react-toast-notifications";
 import { useNavigate } from "react-router-dom";
 import { UserSignUp } from "../../interface/interface";
 import Input from "../input/input";
+import { SignupUrl } from "../../libs/endpoints";
+import axios from "axios";
 
 function SignUp() {
+  const { addToast } = useToasts();
   const navigate = useNavigate();
   const [formDetails, setFormDetails] = useState<UserSignUp>({
     username: "",
@@ -13,6 +17,28 @@ function SignUp() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormDetails({ ...formDetails, [name]: value });
+  };
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    axios
+      .post(SignupUrl, {
+        full_name: formDetails.username,
+        email: formDetails.email,
+        password: formDetails.password,
+      })
+      .then((res) =>
+        addToast(res.data.message, {
+          appearance: "success",
+          autoDismiss: true,
+        })
+      )
+      .catch((error) => {
+        addToast(error.response.data.message, {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      });
   };
   return (
     <div className='w-full sm:grid grid-cols-5 '>
@@ -67,7 +93,7 @@ function SignUp() {
           </p>
         </div>
         <div className='mt-5 md:w-[85%] lg:w-[65%] sm:w-[65%] xsm:w-[80%]  w-[90%] mx-auto'>
-          <form action='' className='w-full'>
+          <form className='w-full' onSubmit={handleSubmit}>
             <Input
               type='text'
               placeholder='Name'
