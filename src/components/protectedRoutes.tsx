@@ -1,4 +1,4 @@
-import { ChildrenParm } from "../../interface/interface";
+import { ChildrenParm } from "../interface/interface";
 import { Navigate } from "react-router-dom";
 
 export default function ProtectedRoutes({ children }: ChildrenParm) {

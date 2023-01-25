@@ -7,10 +7,9 @@ import {
 import "./App.css";
 import { ToastProvider } from "react-toast-notifications";
 import { lazy, Suspense } from "react";
-import Fallback from "./components/fallback/fallback";
-import Search from "./components/search/search";
-import AuthRoutes from "./components/authRoutes/authRoutes";
-import DashboardLayout from "./components/dashboard/dashboard";
+import Fallback from "./components/fallback";
+import AuthRoutes from "./components/authRoutes";
+import Layout from "./components/layout";
 const SignUpPage = lazy(() => import("./pages/signup"));
 const LoginPage = lazy(() => import("./pages/login"));
 const ForgotPasswordPg = lazy(() => import("./pages/forgotPassword"));
@@ -59,24 +58,40 @@ function App() {
     <ToastProvider>
       <div className='app'>
         <Router>
+          {/* <Layout> */}
           <Routes>
             <Route
               path='/'
               element={
-                <div>
-                  <DashboardLayout />
+                <div className='w-full'>
+                  <HomePage />
                 </div>
               }
-            >
-              <Route
-                path='/'
-                element={
-                  <div className='w-full'>
-                    <HomePage />
-                  </div>
-                }
-              />
-            </Route>
+            />
+            <Route
+              path='/movies'
+              element={
+                <div className='w-full'>
+                  <HomePage />
+                </div>
+              }
+            />
+            <Route
+              path='/tv-series'
+              element={
+                <div className='w-full'>
+                  <HomePage />
+                </div>
+              }
+            />
+            <Route
+              path='/upcoming'
+              element={
+                <div className='w-full'>
+                  <HomePage />
+                </div>
+              }
+            />
 
             <Route
               element={
@@ -105,6 +120,7 @@ function App() {
               <Route path='/reset-password' element={<ResetPassword />} />
             </Route>
           </Routes>
+          {/* </Layout> */}
         </Router>
       </div>
     </ToastProvider>

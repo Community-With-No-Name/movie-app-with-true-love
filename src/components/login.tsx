@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserLogin } from "../../interface/interface";
-import { LoginUrl } from "../../libs/endpoints";
+import { UserLogin } from "../interface/interface";
+import { login_url } from "../libs/endpoints";
 import axios from "axios";
 import { useToasts } from "react-toast-notifications";
-import Input from "../input/input";
+import Input from "./input";
 export default function Login() {
   const { addToast } = useToasts();
   const [loginDetails, setLoginDetails] = useState<UserLogin>({
@@ -18,7 +18,7 @@ export default function Login() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     axios
-      .post(LoginUrl, {
+      .post(login_url, {
         email: loginDetails.email,
         password: loginDetails.password,
       })
@@ -53,7 +53,7 @@ export default function Login() {
             <button className='create text-[#FEFEFE] bg-transparent rounded-[15px] text-sm border-[1px] border-[#4D4B4B] font-normal p-[6px] sm:my-12  my-6 w-full flex justify-center items-center gap-3'>
               <span>
                 {" "}
-                <img src={`${require("../../images/Google.png")}`} alt='' />
+                <img src={`${require("../images/Google.png")}`} alt='' />
               </span>
               Log in with Google
             </button>
@@ -115,7 +115,7 @@ export default function Login() {
       >
         <div className='bg-[#1d1d1d]/75 h-full w-full relative'>
           <div className='logo lg:py-12 lg:px-12 px-6 py-6'>
-            <img src={`${require("../../images/logo.png")}`} alt='' />
+            <img src={`${require("../images/logo.png")}`} alt='' />
           </div>
           <div className='more-info text-[#FEFEFE] absolute bottom-2 py-10 lg:px-12 md:px-6  flex flex-col items-start justify-end align-bottom'>
             <h2 className='lg:text-[40px] text-[30px] font-semibold'>
@@ -128,8 +128,8 @@ export default function Login() {
               Genres : Science Fiction, Adventure, Action
             </p>
             <div className='flex justify-center items-center gap-5'>
-              <img src={`${require("../../images/imbd.png")}`} alt='' />
-              <img src={`${require("../../images/star.png")}`} alt='' />
+              <img src={`${require("../images/imbd.png")}`} alt='' />
+              <img src={`${require("../images/star.png")}`} alt='' />
               <span>5.4 / 10</span>
             </div>
           </div>

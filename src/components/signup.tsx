@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import { useNavigate } from "react-router-dom";
-import { UserSignUp } from "../../interface/interface";
-import Input from "../input/input";
-import { SignupUrl } from "../../libs/endpoints";
+import { UserSignUp } from "../interface/interface";
+import Input from "./input";
+import { signup_url } from "../libs/endpoints";
 import axios from "axios";
 
 function SignUp() {
@@ -22,7 +22,7 @@ function SignUp() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     axios
-      .post(SignupUrl, {
+      .post(signup_url, {
         full_name: formDetails.username,
         email: formDetails.email,
         password: formDetails.password,
@@ -50,7 +50,7 @@ function SignUp() {
       >
         <div className='bg-[#1d1d1d]/75 h-full w-full relative'>
           <div className='logo py-12 md:px-12 px-6'>
-            <img src={`${require("../../images/logo.png")}`} alt='' />
+            <img src={`${require("../images/logo.png")}`} alt='' />
           </div>
           <div className='more-info text-[#FEFEFE] absolute bottom-2 py-10 md:px-12 px-2  flex flex-col items-start justify-end align-bottom'>
             <h3 className='text-[30px] font-semibold mb-3'>
@@ -123,7 +123,7 @@ function SignUp() {
             <button className='create text-[#FEFEFE] bg-transparent rounded-[15px] text-sm border-[1px] border-[#4D4B4B] font-normal p-[6px] mt-6 w-full flex justify-center items-center gap-3'>
               <span>
                 {" "}
-                <img src={`${require("../../images/Google.png")}`} alt='' />
+                <img src={`${require("../images/Google.png")}`} alt='' />
               </span>
               Sign up with Google
             </button>

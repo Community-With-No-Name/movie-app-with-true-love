@@ -34,3 +34,26 @@ export interface SideBarProps {
   children: any;
   Icon: any;
 }
+
+export interface SliderProps {
+  name: string;
+  id: number;
+  backdrop_path: string;
+  overview: string;
+  poster_path: string;
+  release_date: string;
+  original_title: string;
+  vote_average: number;
+}
+
+export interface ScrollingProps {
+  children: any;
+  title: string;
+  url: string;
+  speed: number;
+}
+
+export interface CardProps {
+  data: SliderProps;
+  type: string;
+}

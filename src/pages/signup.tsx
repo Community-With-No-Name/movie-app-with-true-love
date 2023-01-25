@@ -1,4 +1,4 @@
-import SignUp from "../components/signup/signup";
+import SignUp from "../components/signup";
 
 export default function SignupPg() {
   return (

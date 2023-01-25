@@ -1,5 +1,5 @@
 import React from "react";
-import { InputProps } from "../../interface/interface";
+import { InputProps } from "../interface/interface";
 
 export default function Input({
   name,
